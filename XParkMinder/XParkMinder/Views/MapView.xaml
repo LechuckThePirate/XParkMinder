@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XParkMinder.Views.MapView">
-  <Label Text="{Binding TestText}" VerticalOptions="Center" HorizontalOptions="Center" />
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+            xmlns:local="clr-namespace:XParkMinder.Controls;assembly=XParkMinder"
+            x:Class="XParkMinder.Views.MapView">
+  <StackLayout>
+    <Label Text="{Binding TestText}" VerticalOptions="Center" HorizontalOptions="Center" />
+    <local:XParkMinderMap x:Name="Map" WidthRequest="320" HeightRequest="200" IsShowingUser="true" MapType="Street" >
+      <maps:Map.Behaviors>
+        <local:XParkMinderMapBehavior MapSpan="{Binding MapSpan}" />
+      </maps:Map.Behaviors>
+    </local:XParkMinderMap>
+  </StackLayout>
 </ContentPage>

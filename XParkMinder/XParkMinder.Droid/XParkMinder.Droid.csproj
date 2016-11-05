@@ -187,6 +187,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderers\XParkminderMapCustomRenderer.cs" />
     <Compile Include="IocContainer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="NativeServices\GpsService.cs" />

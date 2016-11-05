@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using XParkMinder.ViewModels;
 
 namespace XParkMinder.Views
@@ -14,6 +8,7 @@ namespace XParkMinder.Views
 
         public MapView(MapViewModel viewModel)
         {
+            this.Title = "XParkMinder";
             InitializeComponent();
             BindingContext = viewModel;
         }

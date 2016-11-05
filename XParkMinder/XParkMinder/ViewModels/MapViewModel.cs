@@ -5,7 +5,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using XParkMinder.Application.Contracts.ServiceLibrary.Contracts;
+using XParkMinder.Controls;
 using XParkMinder.Geo.Contracts.ServiceLibrary.Contracts;
 using XParkMinder.Views;
 
@@ -17,6 +20,7 @@ namespace XParkMinder.ViewModels
         #region .: Fields :.
 
         private string _testText = string.Empty;
+        private MapSpan _mapSpan;
 
         #endregion
 
@@ -56,6 +60,16 @@ namespace XParkMinder.ViewModels
             }
         }
 
+        public MapSpan MapSpan
+        {
+            get { return _mapSpan; }
+            set
+            {
+                _mapSpan = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region .: Private Methods :.
@@ -64,6 +78,7 @@ namespace XParkMinder.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         private async void GetLocationAddress()
         {
             TestText = "(Retrieving location)";
@@ -72,6 +87,13 @@ namespace XParkMinder.ViewModels
             var currentAddress = await GeoService.GetGeocodedAddressAsync(currentLocation);
 
             TestText = currentAddress;
+           
+            MoveMapToNewLocation(currentLocation.Latitude, currentLocation.Longitude);
+        }
+
+        private void MoveMapToNewLocation(float latitude, float longitude)
+        {
+            MapSpan = MapSpan.FromCenterAndRadius(new Position(latitude, longitude), Distance.FromMeters(150));
         }
 
         #endregion
