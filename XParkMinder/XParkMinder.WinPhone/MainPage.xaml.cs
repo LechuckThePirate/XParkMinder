@@ -28,7 +28,7 @@ namespace XParkMinder.WinPhone
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            LoadApplication(new XParkMinder.App());
+            LoadApplication(new XParkMinder.XParkMinderApp());
         }
 
         /// <summary>

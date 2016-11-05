@@ -21,7 +21,7 @@ namespace XParkMinder.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new XParkMinder.App());
+            LoadApplication(new XParkMinder.XParkMinderApp());
         }
     }
 }

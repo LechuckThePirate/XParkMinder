@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Autofac;
 
 namespace XParkMinder.Droid
 {
@@ -14,13 +15,20 @@ namespace XParkMinder.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
+            base.OnCreate(bundle); 
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            Xamarin.FormsMaps.Init(this,bundle);
+            var iocContainer = IocContainer.RegisterTypes();
+            using (var scope = iocContainer.BeginLifetimeScope())
+            {
+                var app = iocContainer.Resolve<XParkMinderApp>();
+                LoadApplication(app);
+            }
         }
     }
 }
