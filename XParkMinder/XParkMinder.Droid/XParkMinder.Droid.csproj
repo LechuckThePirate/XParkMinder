@@ -190,6 +190,7 @@
     <Compile Include="CustomRenderers\XParkminderMapCustomRenderer.cs" />
     <Compile Include="IocContainer.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="NativeServices\BluetoothBroadcastReceiver.cs" />
     <Compile Include="NativeServices\GpsService.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
