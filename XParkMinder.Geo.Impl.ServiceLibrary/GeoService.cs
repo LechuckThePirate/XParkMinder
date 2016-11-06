@@ -20,7 +20,7 @@ namespace XParkMinder.Geo.Impl.ServiceLibrary
 
         public async Task<PortableLocation> GetCurrentGPSPositionAsync()
         {
-            return await Task.FromResult(GpsService.GetGpsCurrentLocation());
+            return await GpsService.GetGpsCurrentLocation();
         }
 
         public async Task<string> GetGeocodedAddressAsync(PortableLocation location)

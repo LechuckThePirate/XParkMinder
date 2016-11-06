@@ -1,9 +1,10 @@
-﻿using XParkMinder.Geo.Contracts.ServiceLibrary.DTO;
+﻿using System.Threading.Tasks;
+using XParkMinder.Geo.Contracts.ServiceLibrary.DTO;
 
 namespace XParkMinder.Geo.Contracts.ServiceLibrary.Contracts
 {
     public interface IGpsService
     {
-        PortableLocation GetGpsCurrentLocation();
+        Task<PortableLocation> GetGpsCurrentLocation();
     }
 }

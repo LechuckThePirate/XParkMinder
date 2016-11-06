@@ -24,10 +24,9 @@ namespace XParkMinder.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this,bundle);
 
-            var iocContainer = IocContainer.RegisterTypes();
-            using (var scope = iocContainer.BeginLifetimeScope())
+            using (var scope = IocContainer.BeginLifetimeScope())
             {
-                var app = iocContainer.Resolve<XParkMinderApp>();
+                var app = IocContainer.Resolve<XParkMinderApp>();
                 LoadApplication(app);
             }
         }

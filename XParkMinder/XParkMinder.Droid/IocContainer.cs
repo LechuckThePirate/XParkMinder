@@ -12,13 +12,14 @@ using XParkMinder.Views;
 
 namespace XParkMinder.Droid
 {
-    public static class IocContainer
+    public class IocContainer
     {
-        private static IContainer _container;
+        private IContainer _container = null;
 
-        public static IContainer Container => _container ?? (_container = RegisterTypes());
+        private static IocContainer _instance;
+        public static IocContainer Instance => _instance ?? (_instance = new IocContainer());
 
-        public static IContainer RegisterTypes()
+        public IocContainer()
         {
             var builder = new ContainerBuilder();
 
@@ -29,7 +30,7 @@ namespace XParkMinder.Droid
             builder.RegisterType<ParkMinderDbContext>().AsSelf();
 
             builder.RegisterType<ParkingService>().As<IParkingService>();
-            builder.Register(x => new GpsService(Android.App.Application.Context)).As<IGpsService>();
+            builder.Register(x => new AndroidGpsService(Android.App.Application.Context)).As<IGpsService>();
             builder.RegisterType<GeoService>().As<IGeoService>();
             
             // ViewModels
@@ -38,7 +39,17 @@ namespace XParkMinder.Droid
             // Views
             builder.RegisterType<MapView>().AsSelf();
 
-            return builder.Build();
+            _container = builder.Build();
+        }
+
+        public static T Resolve<T>()
+        {
+            return Instance._container.Resolve<T>();
+        }
+
+        public static ILifetimeScope BeginLifetimeScope()
+        {
+            return Instance._container.BeginLifetimeScope();
         }
 
     }

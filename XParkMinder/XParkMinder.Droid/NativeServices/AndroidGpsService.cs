@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Locations;
@@ -16,7 +16,7 @@ using XParkMinder.Geo.Contracts.ServiceLibrary.DTO;
 
 namespace XParkMinder.Droid.NativeServices
 {
-    public class GpsService : IGpsService
+    public class AndroidGpsService : IGpsService
     {
         private Context Context { get; }
 
@@ -25,17 +25,17 @@ namespace XParkMinder.Droid.NativeServices
         private string LocationProvider { get; set; }
         private LocationManager LocationManager => (_locationManager ?? (_locationManager = GetLocationManager(Context)));
 
-        public GpsService(Context context)
+        public AndroidGpsService(Context context)
         {
             Context = context;
         }
 
 
-        public PortableLocation GetGpsCurrentLocation()
+        public async Task<PortableLocation> GetGpsCurrentLocation()
         {
             var location = LocationManager.GetLastKnownLocation(LocationProvider);
             var result = ExpressMapper.Mapper.Map<Location, PortableLocation>(location);
-            return result;
+            return await Task.FromResult<PortableLocation>(result);
         }
 
         LocationManager GetLocationManager(Context context)
