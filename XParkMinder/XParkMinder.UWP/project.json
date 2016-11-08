@@ -1,12 +1,7 @@
 ﻿{
   "dependencies": {
     "Autofac": "4.0.0",
-    "Expressmapper": "1.8.3",
-    "Microsoft.Azure.Mobile.Client": "3.0.3",
-    "Microsoft.Azure.Mobile.Client.SQLiteStore": "2.1.1",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
-    "Xamarin.Forms": "2.3.2.127",
-    "Xamarin.Forms.Maps": "2.3.2.127"
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
   },
   "frameworks": {
     "uap10.0": {}
